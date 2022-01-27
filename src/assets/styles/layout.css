@@ -1,0 +1,12 @@
+.Layout_ImageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.Layout_Image {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
