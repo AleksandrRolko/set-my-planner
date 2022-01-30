@@ -1,0 +1,38 @@
+.TaskCard_Time {
+    font-family: 'Roboto', sans-serif;
+}
+
+.TaskCard_EditIcon {
+    padding-right: 1rem;
+}
+
+.TaskCard_TrashIcon {
+    padding-left: 1rem;
+    border-left: solid 1px #979797;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(1rem);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+}
+
+.TaskCard_DetailsWrapper {
+    animation: fadeIn 0.5s ease;
+}

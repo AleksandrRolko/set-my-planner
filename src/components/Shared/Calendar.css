@@ -1,0 +1,31 @@
+.Calendar_Container {
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+}
+
+.Calendar_WeekRow {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.Calendar_WeekCol {
+    padding: 0;
+}
+
+.Calendar_WeekSpan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 35px;
+    min-height: 35px;
+}
+
+.Calendar_DaySpan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+    border: solid 1px;
+}
