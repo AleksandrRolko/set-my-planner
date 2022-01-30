@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import Button from "../Shared/Button";
 import _ from "lodash";
@@ -7,6 +7,7 @@ import { TextField } from "@mui/material";
 import { TimePicker } from "@material-ui/pickers";
 import { ThemeProvider } from "@material-ui/styles";
 import { createTheme } from "@material-ui/core";
+import moment from "moment";
 
 const materialTheme = createTheme({
   palette: {
@@ -27,10 +28,12 @@ const VALIDATION_RULES = {
 }
 
 const ManageTaskForm = (props) => {
-  const [topic, setTopic] = useState("");
-  const [description, setDescription] = useState("");
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const { task } = props;
+
+  const [topic, setTopic] = useState(task?.topic || "");
+  const [description, setDescription] = useState(task?.description || "");
+  const [startTime, setStartTime] = useState(_.isEmpty(task?.startTime) ? null : moment(task.startTime, ['hh:mm:ss']));
+  const [endTime, setEndTime] = useState(_.isEmpty(task?.endTime) ? null : moment(task.endTime, ['hh:mm:ss']));
   const [validationResult, setValidationResult] = useState({});
 
   const onSubmit = (task) => {
@@ -98,7 +101,7 @@ const ManageTaskForm = (props) => {
         <Button className="w-75"
                 onClick={() => onSubmit({ topic, description, startTime, endTime })}
         >
-          Add
+          {!!task.id ? "EDIT" : "ADD"}
         </Button>
       </Row>
     </>

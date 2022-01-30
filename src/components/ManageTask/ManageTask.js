@@ -1,34 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import ManageTaskImage from "../../assets/images/bg/manage_task.jpg";
 import LocationInformationComponent from "../Shared/LocationInformationComponent";
 import { BsArrowLeft } from "react-icons/bs";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import ManageTaskForm from "./ManageTaskForm";
-import { createTask } from "../../api/tasks";
+import { createTask, updateTask } from "../../api/tasks";
 import moment from "moment";
-import { useDispatch } from "react-redux";
-import { taskCreated } from "../../store/slices/task";
+import { useDispatch, useSelector } from "react-redux";
+import { taskCreated, taskUpdated } from "../../store/slices/task";
+import _ from "lodash";
 
 
 const ManageTask = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const { taskId } = useParams();
+
+  const task = useSelector(state => {
+    return _.find(state.task.tasks, ['id', taskId]);
+  });
+
   const onBack = () => {
-    history.push("/todo")
+    history.push("/todo");
   }
 
-  const onSubmit = (task) => {
-    createTask({
-      ...task,
-      startTime: moment(task.startTime).format("hh:mm:ss"),
-      endTime: moment(task.endTime).format("hh:mm:ss"),
-    })
-      .then(({ data }) => {
-        history.push("/todo");
-        dispatch(taskCreated(data))
-      })
+  const onSubmit = (properties) => {
+    const updatedProperties = {
+      ...properties,
+      startTime: _.isEmpty(properties.startTime) ? null : moment(properties.startTime).format("hh:mm:ss"),
+      endTime: _.isEmpty(properties.endTime) ? null : moment(properties.endTime).format("hh:mm:ss"),
+    };
+
+    if (_.isEmpty(taskId)) {
+      createTask(updatedProperties)
+        .then(({ data }) => {
+          history.push("/todo");
+          dispatch(taskCreated(data))
+        })
+    } else {
+      updateTask({ id: taskId, ...updatedProperties })
+        .then(({ data }) => {
+          history.push("/todo");
+          dispatch(taskUpdated(data))
+        })
+    }
   }
 
   return (
@@ -49,9 +66,13 @@ const ManageTask = (props) => {
               </span>
             </Row>
             <Row className="text-center">
-              <h2 className="fw-bold mb-4">Add New Tasks</h2>
+              <h2 className="fw-bold mb-4">
+                {_.isEmpty(task) ? "Add New Tasks" : "Edit Task"}
+              </h2>
             </Row>
-            <ManageTaskForm onSubmit={onSubmit}/>
+            <ManageTaskForm task={task}
+                            onSubmit={onSubmit}
+            />
           </Col>
         </Row>
       </Container>

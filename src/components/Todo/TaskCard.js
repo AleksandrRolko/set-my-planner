@@ -12,8 +12,10 @@ import moment from "moment";
 import { deleteTask, updateTask } from "../../api/tasks";
 import { taskDeleted, taskUpdated } from "../../store/slices/task";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const TaskCard = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const { task } = props;
@@ -51,6 +53,10 @@ const TaskCard = (props) => {
       .then(_ => {
         dispatch(taskDeleted(task.id))
       })
+  }
+
+  const onEditClick = () => {
+    history.push(`/task/${task.id}/edit`)
   }
 
   return (
@@ -91,7 +97,10 @@ const TaskCard = (props) => {
             </Col>
             <Col className="d-flex align-items-center justify-content-end">
               <div className="TaskCard_EditIcon">
-                <Image src={EditTaskIcon}/>
+                <Image src={EditTaskIcon}
+                       style={{ cursor: "pointer" }}
+                       onClick={onEditClick}
+                />
               </div>
               <div className="TaskCard_TrashIcon">
                 <BsTrash size="1.5rem"

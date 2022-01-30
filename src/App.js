@@ -33,6 +33,9 @@ const App = () => {
           <Route path="/task/new">
             <ManageTask/>
           </Route>
+          <Route path="/task/:taskId/edit">
+            <ManageTask/>
+          </Route>
           <Route path="/">
             <Home/>
           </Route>
