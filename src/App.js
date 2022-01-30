@@ -11,42 +11,24 @@ import Todo from "./components/Todo/Todo";
 import ManageTask from "./components/ManageTask/ManageTask";
 import Phonebook from "./components/Phonebook/Phonebook";
 import Person from "./components/Person/Person";
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
+import UnauthorizedRoute from "./components/Routes/UnauthorizedRoute";
 
 const App = () => {
   return (
     <>
       <Router>
         <Switch>
-          <Route path="/login">
-            <Login/>
-          </Route>
-          <Route path="/sign-up">
-            <SignUp/>
-          </Route>
-          <Route path="/home">
-            <Home/>
-          </Route>
-          <Route path="/quote">
-            <Quote/>
-          </Route>
-          <Route path="/todo">
-            <Todo/>
-          </Route>
-          <Route path="/task/new">
-            <ManageTask/>
-          </Route>
-          <Route path="/task/:taskId/edit">
-            <ManageTask/>
-          </Route>
-          <Route path="/phonebook">
-            <Phonebook/>
-          </Route>
-          <Route path="/person/:personId">
-            <Person/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
+          <UnauthorizedRoute path="/login" component={Login}/>
+          <UnauthorizedRoute path="/sign-up" component={SignUp}/>
+          <ProtectedRoute path="/home" component={Home}/>
+          <ProtectedRoute path="/quote" component={Quote}/>
+          <ProtectedRoute path="/todo" component={Todo}/>
+          <ProtectedRoute path="/task/new" component={ManageTask}/>
+          <ProtectedRoute path="/task/:taskId/edit" component={ManageTask}/>
+          <ProtectedRoute path="/phonebook" component={Phonebook}/>
+          <ProtectedRoute path="/person/:personId" component={Person}/>
+          <ProtectedRoute path="/" component={Home}/>
         </Switch>
       </Router>
     </>

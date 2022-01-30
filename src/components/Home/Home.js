@@ -9,7 +9,12 @@ import PersonImage from "../../assets/images/john.png";
 import "./Home.css";
 import LocationInformationComponent from "../Shared/LocationInformationComponent";
 import { useHistory } from "react-router-dom";
-import StaticDatePicker from "@mui/lab/StaticDatePicker";
+import { styled } from "@mui/material";
+import { StaticDatePicker } from "@mui/lab";
+
+const StyledStaticDatePicker = styled(StaticDatePicker)({
+  display: 'none'
+})
 
 
 const Home = (props) => {
@@ -76,13 +81,13 @@ const Home = (props) => {
             </h2>
           </Row>
           {timer}
-          <Row>
+          <Row className="Home_Calendar">
             <StaticDatePicker value={date}
                               views={['day']}
+                              format="EE-MM/dd/yyyy"
                               onChange={onDateSelected}
                               orientation="landscape"
                               showToolbar={false}
-                              className="d-flex justify-content-center align-items-center"
             />
           </Row>
         </Col>

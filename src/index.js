@@ -9,6 +9,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateIOAdapter from "@mui/lab/AdapterMoment";
 
 const materialTheme = createTheme({
   palette: {
@@ -28,10 +29,25 @@ const materialTheme = createTheme({
   }
 });
 
+function CustomAdapter(options) {
+  const adapter = new DateIOAdapter(options);
+
+  const constructDayObject = (day) => ({ charAt: () => ({ toUpperCase: () => day }) });
+
+  return {
+    ...adapter,
+    getWeekdays() {
+      const customWeekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+      return customWeekdays.map((day) => constructDayObject(day));
+    }
+  };
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={CustomAdapter}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <ThemeProvider theme={materialTheme}>
             <App/>

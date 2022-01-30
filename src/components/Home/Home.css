@@ -48,110 +48,30 @@
     color: rgba(258, 258, 258, 0.67);
 }
 
-/*.MuiPickersSlideTransition-transitionContainer > * {*/
-/*    top: 0 !important;*/
-/*    left: 0 !important;*/
-/*    right: 0 !important;*/
-/*    position: inherit !important;*/
-/*}*/
+.Home_Calendar {
+    padding: 0 2rem;
+    margin-top: 2rem;
+}
 
-/*.MuiPickersCalendarHeader-dayLabel {*/
-/*    color: rgba(0, 0, 0, 0.38) !important;*/
-/*    width: 70px !important;*/
-/*    margin: 0 2px !important;*/
-/*    text-align: center !important;*/
-/*}*/
+.Home_Calendar > .MuiPickerStaticWrapper-root {
+    border: solid 1px #E5E5E5;
+    border-radius: 5px;
+}
 
-/*.MuiPickersDay-day {*/
-/*    color: rgba(0, 0, 0, 0.87) !important;*/
-/*    width: 70px !important;*/
-/*    height: 50px !important;*/
-/*    margin: 0 2px !important;*/
-/*    padding: 0 !important;*/
-/*    font-size: 0.75rem !important;*/
-/*    font-weight: 500 !important;*/
-/*}*/
+.Home_Calendar > .MuiPickerStaticWrapper-root > div > div {
+    width: 100%;
+}
 
-/*.MuiPickersBasePicker-pickerView {*/
-/*    display: flex !important;*/
-/*    max-width: 100% !important;*/
-/*    min-width: 310px !important;*/
-/*    min-height: 305px !important;*/
-/*    overflow-x: hidden !important;*/
-/*    flex-direction: column !important;*/
-/*    justify-content: center !important;*/
-/*}*/
+.Home_Calendar > .MuiPickerStaticWrapper-root > div > div > .MuiCalendarPicker-root {
+    width: 100%;
+}
 
-/*.MuiPickersStaticWrapper-staticWrapperRoot {*/
-/*    display: flex !important;*/
-/*    justify-content: center !important;*/
-/*    align-items: center !important;*/
-/*    overflow: hidden !important;*/
-/*    min-width: 310px !important;*/
-/*    flex-direction: column !important;*/
-/*    background-color: #fff !important;*/
-/*    padding: 0 2rem;*/
-/*}*/
+.Home_Calendar > .MuiPickerStaticWrapper-root > div > div > .MuiCalendarPicker-root > .MuiCalendarPicker-viewTransitionContainer > div > div {
+    display: flex;
+    justify-content: space-evenly;
+}
 
-/*.MuiPickersBasePicker-container {*/
-/*    display: flex !important;*/
-/*    flex-direction: column !important;*/
-/*    border: solid 1px rgba(0, 0, 0, 0.25) !important;*/
-/*    border-radius: 5px !important;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.MuiPickersDay-current {*/
-/*    color: #FFB600 !important;*/
-/*    font-weight: 600 !important;*/
-/*}*/
-
-/*.MuiPickersDay-daySelected {*/
-/*    color: #fff !important;*/
-/*    font-weight: 500 !important;*/
-/*    background-color: #FFB600 !important;*/
-/*}*/
-
-
-/*.MuiPickersSlideTransition-transitionContainer {*/
-/*    display: block;*/
-/*    position: relative;*/
-/*}*/
-
-/*.MuiPickersSlideTransition-transitionContainer > * {*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    position: absolute;*/
-/*}*/
-
-/*.MuiPickersSlideTransition-slideEnter-left {*/
-/*    transform: translate(100%);*/
-/*    will-change: transform;*/
-/*}*/
-
-/*.MuiPickersSlideTransition-slideEnter-right {*/
-/*    transform: translate(-100%);*/
-/*    will-change: transform;*/
-/*}*/
-
-/*.MuiPickersSlideTransition-slideEnterActive {*/
-/*    transform: translate(0%);*/
-/*    transition: transform 350ms cubic-bezier(0.35, 0.8, 0.4, 1) 0ms;*/
-/*}*/
-
-/*.MuiPickersSlideTransition-slideExit {*/
-/*    transform: translate(0%);*/
-/*}*/
-
-/*.MuiPickersSlideTransition-slideExitActiveLeft-left {*/
-/*    transform: translate(-200%);*/
-/*    transition: transform 350ms cubic-bezier(0.35, 0.8, 0.4, 1) 0ms;*/
-/*    will-change: transform;*/
-/*}*/
-
-/*.MuiPickersSlideTransition-slideExitActiveLeft-right {*/
-/*    transform: translate(200%);*/
-/*    transition: transform 350ms cubic-bezier(0.35, 0.8, 0.4, 1) 0ms;*/
-/*    will-change: transform;*/
-/*}*/
+.Home_Calendar > .MuiPickerStaticWrapper-root > div > div > .MuiCalendarPicker-root > .MuiCalendarPicker-viewTransitionContainer > div > .PrivatePickersSlideTransition-root > div > div[role="row"] {
+    display: flex;
+    justify-content: space-evenly;
+}

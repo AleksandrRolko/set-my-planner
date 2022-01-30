@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import { Container, FormControl, Row } from "react-bootstrap";
-import { BsArrowLeft } from "react-icons/bs"
+import { Container, Row } from "react-bootstrap";
+import { BsArrowLeft, BsPerson } from "react-icons/bs"
 import { useHistory } from "react-router-dom";
 import _ from "lodash";
 import Button from "../Shared/Button";
 import { EMAIL_REGEXP, PASSWORD_REGEXP } from "../../utils/constants";
 import { getValidationResult } from "../../utils/validator";
+import { InputAdornment, OutlinedInput, styled, TextField } from "@mui/material";
+import { FiMail } from "react-icons/fi";
+import { AiOutlineLock } from "react-icons/ai";
+
+const CustomInput = styled(OutlinedInput)({
+  "& legend": {
+    display: "none"
+  }
+});
 
 const VALIDATION_RULES = {
   name: [
@@ -78,42 +87,58 @@ const SignUpForm = (props) => {
         </span>
       </Row>
       <Row className="my-4">
-        <FormControl value={name}
-                     onChange={({ target }) => setName(target.value)}
-                     isInvalid={!!validationResult.name}
-                     placeholder="Name"
-                     type="text"
-                     aria-autocomplete="none"
-                     style={{ height: '3rem' }}
+        <CustomInput
+          value={name}
+          variant="outlined"
+          placeholder="Name"
+          error={!!validationResult.name}
+          onChange={({ target }) => setName(target.value)}
+          startAdornment={
+            <InputAdornment position="start">
+              <BsPerson size="1.5rem"/>
+            </InputAdornment>
+          }
         />
-        <FormControl.Feedback type="invalid">
+        <span style={{ color: 'rgb(211, 47, 47)', padding: 0 }}>
           {validationResult.name}
-        </FormControl.Feedback>
+        </span>
       </Row>
       <Row className="my-4">
-        <FormControl value={email}
-                     onChange={({ target }) => setEmail(target.value)}
-                     isInvalid={!!validationResult.email}
-                     placeholder="Email"
-                     type="email"
-                     aria-autocomplete="none"
-                     style={{ height: '3rem' }}
+        <CustomInput
+          value={email}
+          variant="outlined"
+          placeholder="Email"
+          error={!!validationResult.email}
+          helperText={validationResult.email}
+          onChange={({ target }) => setEmail(target.value)}
+          startAdornment={
+            <InputAdornment position="start">
+              <FiMail size="1.5rem"/>
+            </InputAdornment>
+          }
         />
-        <FormControl.Feedback type="invalid">
+        <span style={{ color: 'rgb(211, 47, 47)', padding: 0 }}>
           {validationResult.email}
-        </FormControl.Feedback>
+        </span>
       </Row>
       <Row className="my-4">
-        <FormControl value={password}
-                     onChange={({ target }) => setPassword(target.value)}
-                     isInvalid={!!validationResult.password}
-                     placeholder="Password"
-                     type="password"
-                     style={{ height: '3rem' }}
+        <CustomInput
+          value={password}
+          variant="outlined"
+          placeholder="Password"
+          type="password"
+          error={!!validationResult.password}
+          helperText={validationResult.password}
+          onChange={({ target }) => setPassword(target.value)}
+          startAdornment={
+            <InputAdornment position="start">
+              <AiOutlineLock size="1.5rem"/>
+            </InputAdornment>
+          }
         />
-        <FormControl.Feedback type="invalid">
+        <span style={{ color: 'rgb(211, 47, 47)', padding: 0 }}>
           {validationResult.password}
-        </FormControl.Feedback>
+        </span>
       </Row>
       <Row>
         <Button onClick={() => onSubmit({ name, email, password })}>

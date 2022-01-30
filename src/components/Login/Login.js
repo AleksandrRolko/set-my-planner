@@ -10,10 +10,9 @@ const Login = (props) => {
 
   const onLogin = (credentials) => {
     loginUser(credentials)
-      .then(response => {
-        if (response.status === 200) {
-          history.push("/home")
-        }
+      .then(({ data }) => {
+        localStorage.setItem("token", data.token)
+        history.push("/home");
       })
   }
 

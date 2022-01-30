@@ -3,13 +3,15 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import RegisterImage from "../../assets/images/bg/signup.jpg";
 import SignUpForm from "./SignUpForm";
 import { createUser } from "../../api/users";
+import { useHistory } from "react-router-dom";
 
 const SignUp = (props) => {
+  const history = useHistory();
 
   const onSubmit = (user) => {
     createUser(user)
-      .then(response => {
-        console.log('response', response)
+      .then(({ data }) => {
+        history.push("/login")
       })
   }
 

@@ -2,7 +2,7 @@ import api from "./index";
 
 const loginUser = ({ email, password }) => {
   return new Promise(resolve => {
-    resolve({ status: 200 })
+    resolve({ data: { token: "some-token" } })
   })
 }
 
