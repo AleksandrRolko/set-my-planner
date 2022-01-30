@@ -59,11 +59,7 @@ const Todo = (props) => {
               </Col>
             </Row>
             <Row className="Todo_TaskListContainer">
-              <Scrollbars autoHide={true}
-                          renderThumbVertical={({ style, ...props }) => (
-                            <div {...props} style={{ ...style, width: '50px' }}/>
-                          )}
-              >
+              <Scrollbars autoHide={true}>
                 {
                   tasks.map(task => (
                     <TaskCard key={task.id}

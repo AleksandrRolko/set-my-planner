@@ -9,6 +9,8 @@ import Home from "./components/Home/Home";
 import Quote from "./components/Quote/Quote";
 import Todo from "./components/Todo/Todo";
 import ManageTask from "./components/ManageTask/ManageTask";
+import Phonebook from "./components/Phonebook/Phonebook";
+import Person from "./components/Person/Person";
 
 const App = () => {
   return (
@@ -35,6 +37,12 @@ const App = () => {
           </Route>
           <Route path="/task/:taskId/edit">
             <ManageTask/>
+          </Route>
+          <Route path="/phonebook">
+            <Phonebook/>
+          </Route>
+          <Route path="/person/:personId">
+            <Person/>
           </Route>
           <Route path="/">
             <Home/>

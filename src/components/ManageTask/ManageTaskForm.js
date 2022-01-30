@@ -18,33 +18,8 @@ const materialTheme = createTheme({
 });
 
 
-const VALIDATION_RULES = {
-  topic: [
-    {
-      invalid: value => _.isEmpty(_.trim(value)),
-      message: 'Please enter a topic.'
-    }
-  ]
-}
-
 const ManageTaskForm = (props) => {
-  const { task } = props;
-
-  const [topic, setTopic] = useState(task?.topic || "");
-  const [description, setDescription] = useState(task?.description || "");
-  const [startTime, setStartTime] = useState(_.isEmpty(task?.startTime) ? null : moment(task.startTime, ['hh:mm:ss']));
-  const [endTime, setEndTime] = useState(_.isEmpty(task?.endTime) ? null : moment(task.endTime, ['hh:mm:ss']));
-  const [validationResult, setValidationResult] = useState({});
-
-  const onSubmit = (task) => {
-    const formValidation = getValidationResult(VALIDATION_RULES, task);
-
-    if (formValidation.valid) {
-      props.onSubmit(task);
-    } else {
-      setValidationResult(formValidation);
-    }
-  }
+  const { task, onChange, validationResult } = props;
 
   return (
     <>
@@ -54,8 +29,8 @@ const ManageTaskForm = (props) => {
             <Row style={{ marginBottom: '4rem' }}>
               <InputWithLabel label="Topic"
                               placeholder="Write Topic"
-                              value={topic}
-                              onChange={setTopic}
+                              value={task.topic}
+                              onChange={value => onChange({ topic: value })}
                               error={!!validationResult.topic}
                               errorMessage={validationResult.topic}
               />
@@ -63,9 +38,9 @@ const ManageTaskForm = (props) => {
             <Row style={{ marginBottom: '4rem' }}>
               <InputWithLabel label="Description"
                               placeholder="Write Description"
-                              value={description}
+                              value={task.description}
                               multiline={true}
-                              onChange={setDescription}
+                              onChange={value => onChange({ description: value })}
               />
             </Row>
             <Row>
@@ -73,10 +48,10 @@ const ManageTaskForm = (props) => {
               <Row>
                 <Col md={4} className="p-0">
                   <ThemeProvider theme={materialTheme}>
-                    <TimePicker value={startTime}
+                    <TimePicker value={_.isEmpty(task.startTime) ? null : moment(task.startTime, ['hh:mm:ss'])}
                                 placeholder="00:00 am"
                                 format="hh:mm a"
-                                onChange={setStartTime}
+                                onChange={value => onChange({ startTime: _.isEmpty(value) ? null : moment(value).format("hh:mm:ss") })}
                     />
                   </ThemeProvider>
                 </Col>
@@ -85,10 +60,10 @@ const ManageTaskForm = (props) => {
                 </Col>
                 <Col md={4} className="p-0">
                   <ThemeProvider theme={materialTheme}>
-                    <TimePicker value={endTime}
+                    <TimePicker value={_.isEmpty(task.endTime) ? null : moment(task.endTime, ['hh:mm:ss'])}
                                 placeholder="00:00 am"
                                 format="hh:mm a"
-                                onChange={setEndTime}
+                                onChange={value => onChange({ endTime: _.isEmpty(value) ? null : moment(value).format("hh:mm:ss") })}
                     />
                   </ThemeProvider>
                 </Col>
@@ -96,13 +71,6 @@ const ManageTaskForm = (props) => {
             </Row>
           </Card.Body>
         </Card>
-      </Row>
-      <Row className="mt-5 d-flex justify-content-center">
-        <Button className="w-75"
-                onClick={() => onSubmit({ topic, description, startTime, endTime })}
-        >
-          {!!task.id ? "EDIT" : "ADD"}
-        </Button>
       </Row>
     </>
   );

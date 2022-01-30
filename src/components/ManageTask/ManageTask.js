@@ -1,50 +1,65 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import ManageTaskImage from "../../assets/images/bg/manage_task.jpg";
 import LocationInformationComponent from "../Shared/LocationInformationComponent";
 import { BsArrowLeft } from "react-icons/bs";
 import { useHistory, useParams } from "react-router-dom";
 import ManageTaskForm from "./ManageTaskForm";
-import { createTask, updateTask } from "../../api/tasks";
+import { createTask, getTask, updateTask } from "../../api/tasks";
 import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { taskCreated, taskUpdated } from "../../store/slices/task";
 import _ from "lodash";
+import Button from "../Shared/Button";
+import { getValidationResult } from "../../utils/validator";
 
+const VALIDATION_RULES = {
+  topic: [
+    {
+      invalid: value => _.isEmpty(_.trim(value)),
+      message: 'Please enter a topic.'
+    }
+  ]
+}
 
 const ManageTask = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const { taskId } = useParams();
+  const [task, setTask] = useState({});
+  const [validationResult, setValidationResult] = useState({});
 
-  const task = useSelector(state => {
-    return _.find(state.task.tasks, ['id', taskId]);
-  });
+  useEffect(() => {
+    getTask(taskId)
+      .then(({ data }) => {
+        setTask(data);
+      });
+  }, [taskId])
 
   const onBack = () => {
     history.push("/todo");
   }
 
   const onSubmit = (properties) => {
-    const updatedProperties = {
-      ...properties,
-      startTime: _.isEmpty(properties.startTime) ? null : moment(properties.startTime).format("hh:mm:ss"),
-      endTime: _.isEmpty(properties.endTime) ? null : moment(properties.endTime).format("hh:mm:ss"),
-    };
+    const formValidation = getValidationResult(VALIDATION_RULES, task);
 
-    if (_.isEmpty(taskId)) {
-      createTask(updatedProperties)
-        .then(({ data }) => {
-          history.push("/todo");
-          dispatch(taskCreated(data))
-        })
+    if (formValidation.valid) {
+      if (_.isEmpty(taskId)) {
+        createTask(task)
+          .then(({ data }) => {
+            history.push("/todo");
+            dispatch(taskCreated(data))
+          })
+      } else {
+        updateTask(task)
+          .then(({ data }) => {
+            history.push("/todo");
+            dispatch(taskUpdated(data))
+          })
+      }
     } else {
-      updateTask({ id: taskId, ...updatedProperties })
-        .then(({ data }) => {
-          history.push("/todo");
-          dispatch(taskUpdated(data))
-        })
+      setValidationResult(formValidation);
     }
   }
 
@@ -67,12 +82,20 @@ const ManageTask = (props) => {
             </Row>
             <Row className="text-center">
               <h2 className="fw-bold mb-4">
-                {_.isEmpty(task) ? "Add New Tasks" : "Edit Task"}
+                {_.isEmpty(taskId) ? "Add New Tasks" : "Edit Task"}
               </h2>
             </Row>
             <ManageTaskForm task={task}
-                            onSubmit={onSubmit}
+                            validationResult={validationResult}
+                            onChange={properties => setTask(task => ({ ...task, ...properties }))}
             />
+            <Row className="mt-5 d-flex justify-content-center">
+              <Button className="w-75"
+                      onClick={onSubmit}
+              >
+                {!!task?.id ? "EDIT" : "ADD"}
+              </Button>
+            </Row>
           </Col>
         </Row>
       </Container>

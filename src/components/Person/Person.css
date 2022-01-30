@@ -1,0 +1,16 @@
+.Person_Name {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 2.125rem;
+  font-weight: bold;
+}
+
+.Person_Phone {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.5);
+}

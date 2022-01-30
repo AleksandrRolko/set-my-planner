@@ -4,6 +4,10 @@ const getTasks = () => {
   return api.get("/tasks");
 }
 
+const getTask = (id) => {
+  return api.get(`/tasks/${id}`)
+}
+
 const createTask = (task) => {
   return api.post('/tasks', task)
 }
@@ -18,6 +22,7 @@ const deleteTask = (id) => {
 
 export {
   getTasks,
+  getTask,
   createTask,
   updateTask,
   deleteTask,

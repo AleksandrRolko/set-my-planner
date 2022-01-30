@@ -1,0 +1,29 @@
+.Phonebook_PersonImage {
+    padding: 0.25rem;
+    border-radius: 50%;
+    border: solid #FFB600 0.25rem;
+    position: relative;
+    margin: 0 auto;
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.Phonebook_PersonPhone {
+    font-family: 'Roboto', sans-serif;
+    size: 1.125rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.Phonebook_ScrollbarWrapper {
+    height: 70%;
+    margin-top: 2rem;
+    padding-right: 2.5rem;
+}
+
+.Phonebook_GroupCol {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: bold;
+    color: rgba(5, 5, 5, 0.5);
+}

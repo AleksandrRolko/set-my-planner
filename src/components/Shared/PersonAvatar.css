@@ -1,0 +1,9 @@
+.PersonAvatar_Image {
+  padding: 0.25rem;
+  border-radius: 50%;
+  border: solid #FFB600 0.25rem;
+  position: relative;
+  margin: 0 auto;
+  max-height: 100px;
+  max-width: 100px;
+}

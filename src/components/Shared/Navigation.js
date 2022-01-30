@@ -39,7 +39,7 @@ const Navigation = (props) => {
         />
       </Nav.Item>
       <Nav.Item>
-        <NavigationLink href="/phone"
+        <NavigationLink href="/phonebook"
                         text="Phone"
                         icon={PhoneIcon}
         />
