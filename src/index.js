@@ -4,13 +4,23 @@ import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
 import store from "./store"
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme as createMuiTheme, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateIOAdapter from "@mui/lab/AdapterMoment";
+import { createTheme as createMaterialTheme } from "@material-ui/core";
+import { ThemeProvider as MaterialThemeProvider } from "@material-ui/styles";
 
-const materialTheme = createTheme({
+const materialTheme = createMaterialTheme({
+  palette: {
+    primary: {
+      main: '#FFB600'
+    }
+  },
+});
+
+const muiTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#FFB600'
@@ -48,9 +58,11 @@ ReactDOM.render(
     <Provider store={store}>
       <LocalizationProvider dateAdapter={CustomAdapter}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
-          <ThemeProvider theme={materialTheme}>
-            <App/>
-          </ThemeProvider>
+          <MaterialThemeProvider theme={materialTheme}>
+            <MuiThemeProvider theme={muiTheme}>
+              <App/>
+            </MuiThemeProvider>
+          </MaterialThemeProvider>
         </MuiPickersUtilsProvider>
       </LocalizationProvider>
     </Provider>

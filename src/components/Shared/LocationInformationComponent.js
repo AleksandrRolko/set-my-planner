@@ -5,6 +5,7 @@ import _ from "lodash";
 import moment from "moment";
 import { getCurrentWeather } from "../../api/weather";
 import WeatherIcon from "./WeatherIcon";
+import "./LocationInformationComponent.css";
 
 const LocationInformationComponent = (props) => {
 

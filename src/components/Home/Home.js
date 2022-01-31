@@ -7,7 +7,7 @@ import HomeImage from "../../assets/images/bg/home.jpg";
 import "./Home.css";
 import LocationInformationComponent from "../Shared/LocationInformationComponent";
 import { useHistory } from "react-router-dom";
-import { StaticDatePicker } from "@mui/lab";
+import { DatePicker } from "@material-ui/pickers"
 import { useDispatch, useSelector } from "react-redux";
 import { dateSelected } from "../../store/slices/task";
 
@@ -79,12 +79,12 @@ const Home = (props) => {
           </Row>
           {timer}
           <Row className="Home_Calendar">
-            <StaticDatePicker value={selectedDate}
-                              views={['day']}
-                              format="EE-MM/dd/yyyy"
-                              onChange={onDateSelected}
-                              orientation="landscape"
-                              showToolbar={false}
+            <DatePicker value={selectedDate}
+                        variant="static"
+                        openTo="day"
+                        views={['date']}
+                        disableToolbar={true}
+                        onChange={onDateSelected}
             />
           </Row>
         </Col>

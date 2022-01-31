@@ -1,0 +1,29 @@
+.Weather_Container {
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Weather_DateSpan {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #FFFFFF;
+}
+
+.Weather_Temperature {
+  display: flex;
+  /*margin: 2rem 0;*/
+  font-size: 7rem;
+  line-height: 6rem;
+  font-weight: bold;
+  color: rgba(258, 258, 258, 0.67);
+}
+
+.Weather_LocationContainer {
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: rgba(258, 258, 258, 0.67);
+}

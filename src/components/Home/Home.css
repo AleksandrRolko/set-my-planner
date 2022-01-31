@@ -18,60 +18,28 @@
     font-size: 18px;
 }
 
-.Weather_Container {
-    font-family: 'Roboto', sans-serif;
-    position: absolute;
-    bottom: 3rem;
-    left: 3rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.Weather_DateSpan {
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    color: #FFFFFF;
-}
-
-.Weather_Temperature {
-    display: flex;
-    /*margin: 2rem 0;*/
-    font-size: 7rem;
-    line-height: 6rem;
-    font-weight: bold;
-    color: rgba(258, 258, 258, 0.67);
-}
-
-.Weather_LocationContainer {
-    margin-top: 2rem;
-    font-size: 2rem;
-    color: rgba(258, 258, 258, 0.67);
-}
-
 .Home_Calendar {
     padding: 0 2rem;
     margin-top: 2rem;
 }
 
-.Home_Calendar > .MuiPickerStaticWrapper-root {
-    border: solid 1px #E5E5E5;
-    border-radius: 5px;
+.MuiPickersStaticWrapper-staticWrapperRoot {
+    border: solid 1px #E5E5E5 !important;
+    border-radius: 5px !important;
+    padding: 2rem 2rem !important;
 }
 
-.Home_Calendar > .MuiPickerStaticWrapper-root > div > div {
-    width: 100%;
+.MuiPickersBasePicker-pickerView {
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
-.Home_Calendar > .MuiPickerStaticWrapper-root > div > div > .MuiCalendarPicker-root {
-    width: 100%;
+.MuiPickersCalendarHeader-daysHeader {
+    display: flex !important;
+    justify-content: space-evenly !important;
 }
 
-.Home_Calendar > .MuiPickerStaticWrapper-root > div > div > .MuiCalendarPicker-root > .MuiCalendarPicker-viewTransitionContainer > div > div {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.Home_Calendar > .MuiPickerStaticWrapper-root > div > div > .MuiCalendarPicker-root > .MuiCalendarPicker-viewTransitionContainer > div > .PrivatePickersSlideTransition-root > div > div[role="row"] {
-    display: flex;
-    justify-content: space-evenly;
+.MuiPickersCalendar-week {
+    display: flex !important;
+    justify-content: space-evenly !important;
 }
