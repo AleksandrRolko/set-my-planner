@@ -32,11 +32,13 @@ const ManageTask = (props) => {
   const selectedDate = useSelector(state => state.task.selectedDate);
 
   useEffect(() => {
-    getTask(taskId)
-      .then(({ data }) => {
-        setTask(data);
-      });
-  }, [taskId])
+    if (!!taskId) {
+      getTask(taskId)
+        .then(({ data }) => {
+          setTask(data);
+        });
+    }
+  }, [taskId]);
 
   const onBack = () => {
     history.push("/todo");

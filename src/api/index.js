@@ -3,4 +3,7 @@ import Config from '../config';
 
 export default axios.create({
   baseURL: Config.BASE_URL,
+  headers: {
+    'Authorization': localStorage.getItem('token'),
+  }
 });

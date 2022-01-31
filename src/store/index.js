@@ -6,5 +6,8 @@ export default configureStore({
   reducer: {
     task: taskReducer,
     person: personReducer,
-  }
+  },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false,
+  })
 })
