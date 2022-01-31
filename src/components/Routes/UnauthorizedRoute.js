@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
 import _ from "lodash";
 
 const UnauthorizedRoute = ({ component: Component, ...restOfProps }) => {

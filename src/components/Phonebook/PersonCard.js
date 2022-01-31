@@ -20,7 +20,7 @@ const PersonCard = (props) => {
       <Card.Body>
         <Row>
           <Col md="auto">
-            <Image src={_.isEmpty(person.image) ? Anonymous : `data:image/jpg;base64,${person.image}`}
+            <Image src={_.isEmpty(person.image) ? Anonymous : person.image}
                    className="Phonebook_PersonImage"
             />
           </Col>

@@ -123,7 +123,7 @@ const WeatherIcon = (props) => {
         );
     }
 
-  }, [code]);
+  }, [code, iconProps]);
 
   return (
     <>

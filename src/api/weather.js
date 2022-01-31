@@ -9,14 +9,6 @@ const api = axios.create({
 })
 
 const getCurrentWeather = (longitude, latitude) => {
-  return new Promise(resolve => {
-    resolve({
-      temperature: 0,
-      weatherType: "Cloudy",
-      weatherCode: 802,
-    })
-  })
-
   return api.get('/data/2.5/weather', {
     params: {
       lat: latitude,

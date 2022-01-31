@@ -22,7 +22,7 @@ const Home = (props) => {
   const selectedDate = useSelector(state => state.task.selectedDate);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    setInterval(() => {
       setCurrentTime(moment());
     }, 1000);
   }, []);

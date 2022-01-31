@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import TodoImage from "../../assets/images/bg/todo.jpg";
@@ -25,7 +25,7 @@ const Todo = (props) => {
       .then(({ data }) => {
         dispatch(tasksFetched(data))
       })
-  }, []);
+  }, [dispatch]);
 
   const onNewTaskClick = () => {
     history.push("/task/new")

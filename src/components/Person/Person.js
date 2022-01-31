@@ -45,7 +45,7 @@ const Person = (props) => {
               </span>
           </Row>
           <Row className="mt-5">
-            <PersonAvatar src={_.isEmpty(person.image) ? Anonymous : `data:image/jpg;base64,${person.image}`}
+            <PersonAvatar src={_.isEmpty(person.image) ? Anonymous : person.image}
                           className="Phonebook_PersonImage"
                           style={{ maxHeight: 200, maxWidth: 200 }}
             />

@@ -4,10 +4,9 @@ import './index.css';
 import App from './App';
 import { Provider } from "react-redux";
 import store from "./store"
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateIOAdapter from "@mui/lab/AdapterMoment";
 

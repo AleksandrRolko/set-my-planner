@@ -31,7 +31,7 @@ const Phonebook = (props) => {
       .then(({ data }) => {
         dispatch(personsFetched(data))
       })
-  }, []);
+  }, [dispatch]);
 
   const filteredPersons = useMemo(() => {
     if (search.match(/^\d/)) {
@@ -43,10 +43,10 @@ const Phonebook = (props) => {
     }
   }, [search, persons])
 
-  const groupedPersons = useMemo(() => {
-    console.log(filteredPersons);
-    return _.groupBy(filteredPersons, person => person.name.charAt(0).toUpperCase());
-  }, [filteredPersons])
+  const groupedPersons = useMemo(
+    () => _.groupBy(filteredPersons, person => person.name.charAt(0).toUpperCase()),
+    [filteredPersons]
+  );
 
 
   return (

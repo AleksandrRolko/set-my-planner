@@ -6,7 +6,7 @@ import _ from "lodash";
 import Button from "../Shared/Button";
 import { EMAIL_REGEXP, PASSWORD_REGEXP } from "../../utils/constants";
 import { getValidationResult } from "../../utils/validator";
-import { InputAdornment, OutlinedInput, styled, TextField } from "@mui/material";
+import { InputAdornment, OutlinedInput, styled } from "@mui/material";
 import { FiMail } from "react-icons/fi";
 import { AiOutlineLock } from "react-icons/ai";
 
