@@ -1,11 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import moment from "moment";
-
+import _ from "lodash";
 import Navigation from "../Shared/Navigation";
 import HomeImage from "../../assets/images/bg/home.jpg";
-import PersonImage from "../../assets/images/john.png";
-
 import "./Home.css";
 import LocationInformationComponent from "../Shared/LocationInformationComponent";
 import { useHistory } from "react-router-dom";
@@ -20,7 +18,7 @@ const Home = (props) => {
 
   const [currentTime, setCurrentTime] = useState(moment());
   const selectedDate = useSelector(state => state.task.selectedDate);
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = _.isEmpty(localStorage.getItem("currentUser")) ? {} : JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
     setInterval(() => {
@@ -62,21 +60,21 @@ const Home = (props) => {
           </Row>
           <Row className="d-flex text-center pt-3">
             <h2 className="fw-bold">
-              Hello, {currentUser.firstName}!
+              Hello, {currentUser?.firstName}!
             </h2>
             <h4>
               How are you today?
             </h4>
           </Row>
           <Row className="d-flex justify-content-center text-center pt-3">
-            <Image src={currentUser.image}
+            <Image src={currentUser?.image}
                    style={{ maxWidth: 200, maxHeight: 200 }}
                    className="Home_PersonImage"
             />
             <h2 style={{ fontSize: '25px' }}
                 className="fw-bold pt-3"
             >
-              {`${currentUser.firstName} ${currentUser.lastName}`}
+              {`${currentUser?.firstName} ${currentUser?.lastName}`}
             </h2>
           </Row>
           {timer}
