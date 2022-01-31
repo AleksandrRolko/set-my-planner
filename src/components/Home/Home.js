@@ -9,19 +9,17 @@ import PersonImage from "../../assets/images/john.png";
 import "./Home.css";
 import LocationInformationComponent from "../Shared/LocationInformationComponent";
 import { useHistory } from "react-router-dom";
-import { styled } from "@mui/material";
 import { StaticDatePicker } from "@mui/lab";
-
-const StyledStaticDatePicker = styled(StaticDatePicker)({
-  display: 'none'
-})
+import { useDispatch, useSelector } from "react-redux";
+import { dateSelected } from "../../store/slices/task";
 
 
 const Home = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [currentTime, setCurrentTime] = useState(moment());
-  const [date, setDate] = useState(moment().toDate());
+  const selectedDate = useSelector(state => state.task.selectedDate);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,7 +28,7 @@ const Home = (props) => {
   }, []);
 
   const onDateSelected = (value) => {
-    setDate(value);
+    dispatch(dateSelected(value));
     history.push("/todo");
   }
 
@@ -82,7 +80,7 @@ const Home = (props) => {
           </Row>
           {timer}
           <Row className="Home_Calendar">
-            <StaticDatePicker value={date}
+            <StaticDatePicker value={selectedDate}
                               views={['day']}
                               format="EE-MM/dd/yyyy"
                               onChange={onDateSelected}

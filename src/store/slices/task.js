@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
+import moment from "moment";
 
 export const taskSlice = createSlice({
   name: "task",
   initialState: {
     tasks: [],
+    selectedDate: moment().toDate(),
   },
   reducers: {
     tasksFetched: (state, action) => {
@@ -20,6 +22,9 @@ export const taskSlice = createSlice({
     taskDeleted: (state, action) => {
       state.tasks = _.reject(state.tasks, ['id', action.payload]);
     },
+    dateSelected: (state, action) => {
+      state.selectedDate = action.payload;
+    }
   }
 });
 
@@ -28,6 +33,7 @@ export const {
   taskCreated,
   taskDeleted,
   taskUpdated,
+  dateSelected,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

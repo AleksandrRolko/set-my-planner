@@ -7,7 +7,7 @@ import { useHistory, useParams } from "react-router-dom";
 import ManageTaskForm from "./ManageTaskForm";
 import { createTask, getTask, updateTask } from "../../api/tasks";
 import moment from "moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { taskCreated, taskUpdated } from "../../store/slices/task";
 import _ from "lodash";
 import Button from "../Shared/Button";
@@ -29,6 +29,7 @@ const ManageTask = (props) => {
   const { taskId } = useParams();
   const [task, setTask] = useState({});
   const [validationResult, setValidationResult] = useState({});
+  const selectedDate = useSelector(state => state.task.selectedDate);
 
   useEffect(() => {
     getTask(taskId)
@@ -41,12 +42,15 @@ const ManageTask = (props) => {
     history.push("/todo");
   }
 
-  const onSubmit = (properties) => {
+  const onSubmit = () => {
     const formValidation = getValidationResult(VALIDATION_RULES, task);
 
     if (formValidation.valid) {
       if (_.isEmpty(taskId)) {
-        createTask(task)
+        createTask({
+          ...task,
+          date: moment(selectedDate).format("YYYY-MM-DD")
+        })
           .then(({ data }) => {
             history.push("/todo");
             dispatch(taskCreated(data))

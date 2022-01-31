@@ -11,12 +11,14 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import "./Todo.css";
 import { tasksFetched } from "../../store/slices/task";
 import { useHistory } from "react-router-dom";
+import _ from "lodash";
+import moment from "moment";
 
 const Todo = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const tasks = useSelector(state => state.task.tasks);
+  const tasks = useSelector(state => _.filter(state.task.tasks, ['date', moment(state.task.selectedDate).format("YYYY-MM-DD")]));
 
   useEffect(() => {
     getTasks()
