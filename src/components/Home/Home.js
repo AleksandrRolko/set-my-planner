@@ -20,6 +20,7 @@ const Home = (props) => {
 
   const [currentTime, setCurrentTime] = useState(moment());
   const selectedDate = useSelector(state => state.task.selectedDate);
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
     setInterval(() => {
@@ -61,21 +62,21 @@ const Home = (props) => {
           </Row>
           <Row className="d-flex text-center pt-3">
             <h2 className="fw-bold">
-              Hello, John!
+              Hello, {currentUser.firstName}!
             </h2>
             <h4>
               How are you today?
             </h4>
           </Row>
           <Row className="d-flex justify-content-center text-center pt-3">
-            <Image src={PersonImage}
+            <Image src={currentUser.image}
                    style={{ maxWidth: 200, maxHeight: 200 }}
                    className="Home_PersonImage"
             />
             <h2 style={{ fontSize: '25px' }}
                 className="fw-bold pt-3"
             >
-              John Doe
+              {`${currentUser.firstName} ${currentUser.lastName}`}
             </h2>
           </Row>
           {timer}

@@ -11,7 +11,8 @@ const Login = (props) => {
   const onLogin = (credentials) => {
     loginUser(credentials)
       .then(({ data }) => {
-        localStorage.setItem("token", data.token)
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("currentUser", JSON.stringify(data.user));
         history.push("/home");
       })
   }
