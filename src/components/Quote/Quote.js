@@ -1,5 +1,5 @@
-import React from "react";
-import { Container, Image, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Carousel, Container, Image, Row } from "react-bootstrap";
 import _ from "lodash";
 
 import Quote1 from "../../assets/images/quotes/quoteCard-01.png"
@@ -17,6 +17,8 @@ const QUOTES = [
 
 const Quote = (props) => {
 
+  const [selectedIndex, setSelectedIndex] = useState(_.sample(QUOTES.map((_, index) => index)));
+
   return (
     <>
       <Container className="h-100 p-5 d-flex flex-column justify-content-between">
@@ -26,7 +28,18 @@ const Quote = (props) => {
           </h2>
         </Row>
         <Row>
-          <Image src={_.sample(QUOTES)}/>
+          <Carousel activeIndex={selectedIndex}
+                    interval={null}
+                    onSelect={setSelectedIndex}
+          >
+            {
+              QUOTES.map((quoteImage, index) => (
+                <Carousel.Item key={index}>
+                  <Image src={quoteImage}/>
+                </Carousel.Item>
+              ))
+            }
+          </Carousel>
         </Row>
         <Row>
           <Navigation/>
